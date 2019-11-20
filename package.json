@@ -1,15 +1,21 @@
 {
   "name": "fpl-fetch",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Wrapper for the Fantasy Premier League API",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "fpl"
+  ],
+  "author": "Peter McAree",
+  "license": "MIT",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
     "typescript": "^3.7.2"
   },
   "dependencies": {
