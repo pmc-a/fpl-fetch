@@ -1,11 +1,11 @@
 import Axios, { AxiosResponse } from 'axios';
 
-import { Bootstrap } from './typings';
+import { ClassicLeague } from './typings';
 
 const fplBaseUrl = 'https://fantasy.premierleague.com/api';
 
-export const fetchBootstrap = (): Promise<AxiosResponse<Bootstrap>> => {
-    return Axios.get(`${fplBaseUrl}/bootstrap-static/`)
+export const fetchClassicLeague = (leagueId: number): Promise<AxiosResponse<ClassicLeague>> => {
+    return Axios.get(`${fplBaseUrl}/leagues-classic/${leagueId}/standings/`)
         .then((response) => {
             return response.data;
         })
