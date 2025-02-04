@@ -1,0 +1,25 @@
+{
+  "name": "fpl-fetch-v2",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs",
+    "test": "vitest",
+    "lint": "eslint . --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "pmc-a",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.19.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}
