@@ -4,6 +4,7 @@ import type {
   Gameweek,
   ManagerSummary,
   PlayerSummary,
+  Transfer,
 } from "./types";
 
 import { Client } from "./client";
@@ -17,6 +18,7 @@ const endpoints = {
   gameweek: (id: number) => `event/${id}/live/`,
   player: (id: number) => `element-summary/${id}/`,
   manager: (id: number) => `entry/${id}/`,
+  managerTransfers: (id: number) => `entry/${id}/transfers/`,
 };
 
 /**
@@ -140,5 +142,23 @@ export default class FplFetch {
    */
   async getManager(id: number): Promise<ManagerSummary> {
     return this.client.get(endpoints.manager(id));
+  }
+
+  /**
+   * Gets transfer history for a specific manager
+   * @param id - Manager ID
+   * @returns List of transfers made by the manager
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getManagerTransfers(1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }}
+   * ```
+   */
+  async getManagerTransfers(id: number): Promise<Transfer[]> {
+    return this.client.get(endpoints.managerTransfers(id));
   }
 }
