@@ -2,6 +2,7 @@ import type {
   BootstrapData,
   Fixture,
   Gameweek,
+  ManagerHistory,
   ManagerSummary,
   PlayerSummary,
   Transfer,
@@ -19,6 +20,7 @@ const endpoints = {
   player: (id: number) => `element-summary/${id}/`,
   manager: (id: number) => `entry/${id}/`,
   managerTransfers: (id: number) => `entry/${id}/transfers/`,
+  managerHistory: (id: number) => `entry/${id}/history/`,
 };
 
 /**
@@ -160,5 +162,23 @@ export default class FplFetch {
    */
   async getManagerTransfers(id: number): Promise<Transfer[]> {
     return this.client.get(endpoints.managerTransfers(id));
+  }
+
+  /**
+   * Gets historical data for a specific manager
+   * @param id - Manager ID
+   * @returns Manager history data including past seasons and current season performance
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getManagerHistory(1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
+   */
+  async getManagerHistory(id: number): Promise<ManagerHistory> {
+    return this.client.get(endpoints.managerHistory(id));
   }
 }
