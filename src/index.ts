@@ -2,6 +2,7 @@ import type {
   BootstrapData,
   Fixture,
   Gameweek,
+  ManagerGameweekPicks,
   ManagerHistory,
   ManagerSummary,
   PlayerSummary,
@@ -21,6 +22,8 @@ const endpoints = {
   manager: (id: number) => `entry/${id}/`,
   managerTransfers: (id: number) => `entry/${id}/transfers/`,
   managerHistory: (id: number) => `entry/${id}/history/`,
+  managerGameweekPicks: (id: number, gameweekId: number) =>
+    `entry/${id}/event/${gameweekId}/picks/`,
 };
 
 /**
@@ -180,5 +183,27 @@ export default class FplFetch {
    */
   async getManagerHistory(id: number): Promise<ManagerHistory> {
     return this.client.get(endpoints.managerHistory(id));
+  }
+
+  /**
+   * Gets a manager's team picks for a specific gameweek
+   * @param id - Manager ID
+   * @param gameweekId - Gameweek ID
+   * @returns Manager's team selection and points for the specified gameweek
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getManagerGameweekPicks(1, 1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
+   */
+  async getManagerGameweekPicks(
+    id: number,
+    gameweekId: number,
+  ): Promise<ManagerGameweekPicks> {
+    return this.client.get(endpoints.managerGameweekPicks(id, gameweekId));
   }
 }
