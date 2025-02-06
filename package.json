@@ -10,7 +10,9 @@
     "lint": "eslint . --fix",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["fpl"],
+  "keywords": [
+    "fpl"
+  ],
   "author": "pmc-a",
   "license": "MIT",
   "description": "Wrapper for the Fantasy Premier League API",
