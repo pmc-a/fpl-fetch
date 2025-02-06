@@ -1,6 +1,6 @@
 interface Chip {
   id: number;
-  name: string;
+  name: "wildcard" | "freehit" | "bboost" | "3xc" | "manager";
   number: number;
   start_event: number;
   stop_event: number;
@@ -108,7 +108,7 @@ interface Element {
   expected_assists: string;
 }
 
-export interface BootstrapData extends Response {
+export interface BootstrapData {
   chips: Chip[];
   events: Event[];
   game_settings: GameSettings;
@@ -119,4 +119,185 @@ export interface BootstrapData extends Response {
   element_types: ElementType[];
   elements: Element[];
   total_players: number;
+}
+
+interface Stat {
+  identifier: string;
+  a: StatValue[];
+  h: StatValue[];
+}
+
+interface StatValue {
+  value: number;
+  element: number;
+}
+
+export interface Fixture {
+  code: number;
+  event: number;
+  finished: boolean;
+  finished_provisional: boolean;
+  id: number;
+  kickoff_time: string;
+  minutes: number;
+  provisional_start_time: boolean;
+  started: boolean;
+  team_a: number;
+  team_a_score: number;
+  team_h: number;
+  team_h_score: number;
+  stats: Stat[];
+  team_h_difficulty: number;
+  team_a_difficulty: number;
+  pulse_id: number;
+}
+
+/**
+ * Gameweek Interface
+ */
+export interface Gameweek {
+  elements: Element[];
+}
+
+interface Element {
+  id: number;
+  stats: Stats;
+  explain: Explain[];
+  modified: boolean;
+}
+
+interface Stats {
+  minutes: number;
+  goals_scored: number;
+  assists: number;
+  clean_sheets: number;
+  goals_conceded: number;
+  own_goals: number;
+  penalties_saved: number;
+  penalties_missed: number;
+  yellow_cards: number;
+  red_cards: number;
+  saves: number;
+  bonus: number;
+  bps: number;
+  influence: string;
+  creativity: string;
+  threat: string;
+  ict_index: string;
+  starts: number;
+  expected_goals: string;
+  expected_assists: string;
+  expected_goal_involvements: string;
+  expected_goals_conceded: string;
+  mng_win: number;
+  mng_draw: number;
+  mng_loss: number;
+  mng_underdog_win: number;
+  mng_underdog_draw: number;
+  mng_clean_sheets: number;
+  mng_goals_scored: number;
+  total_points: number;
+  in_dreamteam: boolean;
+}
+
+interface Explain {
+  fixture: number;
+  stats: Stat[];
+}
+
+interface Stat {
+  identifier: string;
+  points: number;
+  value: number;
+  points_modification: number;
+}
+
+interface History {
+  element: number;
+  fixture: number;
+  opponent_team: number;
+  total_points: number;
+  was_home: boolean;
+  kickoff_time: string;
+  team_h_score: number;
+  team_a_score: number;
+  round: number;
+  modified: boolean;
+  minutes: number;
+  goals_scored: number;
+  assists: number;
+  clean_sheets: number;
+  goals_conceded: number;
+  own_goals: number;
+  penalties_saved: number;
+  penalties_missed: number;
+  yellow_cards: number;
+  red_cards: number;
+  saves: number;
+  bonus: number;
+  bps: number;
+  influence: string;
+  creativity: string;
+  threat: string;
+  ict_index: string;
+  starts: number;
+  expected_goals: string;
+  expected_assists: string;
+  expected_goal_involvements: string;
+  expected_goals_conceded: string;
+  mng_win: number;
+  mng_draw: number;
+  mng_loss: number;
+  mng_underdog_win: number;
+  mng_underdog_draw: number;
+  mng_clean_sheets: number;
+  mng_goals_scored: number;
+  value: number;
+  transfers_balance: number;
+  selected: number;
+  transfers_in: number;
+  transfers_out: number;
+}
+
+interface HistoryPast {
+  season_name: string;
+  element_code: number;
+  start_cost: number;
+  end_cost: number;
+  total_points: number;
+  minutes: number;
+  goals_scored: number;
+  assists: number;
+  clean_sheets: number;
+  goals_conceded: number;
+  own_goals: number;
+  penalties_saved: number;
+  penalties_missed: number;
+  yellow_cards: number;
+  red_cards: number;
+  saves: number;
+  bonus: number;
+  bps: number;
+  influence: string;
+  creativity: string;
+  threat: string;
+  ict_index: string;
+  starts: number;
+  expected_goals: string;
+  expected_assists: string;
+  expected_goal_involvements: string;
+  expected_goals_conceded: string;
+  mng_win: number;
+  mng_draw: number;
+  mng_loss: number;
+  mng_underdog_win: number;
+  mng_underdog_draw: number;
+  mng_clean_sheets: number;
+  mng_goals_scored: number;
+}
+
+export interface PlayerSummary {
+  fixtures: Fixture[];
+  history: History[];
+  history_past: HistoryPast[];
 }

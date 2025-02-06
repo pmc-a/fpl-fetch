@@ -1,4 +1,4 @@
-import type { BootstrapData } from "./types";
+import type { BootstrapData, Fixture, Gameweek, PlayerSummary } from "./types";
 
 import { Client } from "./client";
 
@@ -23,15 +23,25 @@ interface Config {
  * Client for fetching data from the Fantasy Premier League API
  */
 export default class FplFetch {
-  private config: Config;
+  private config: Config = {
+    debug: false,
+  };
+
   private client: Client;
 
   /**
    * Creates a new FPL API client
    * @param config - Configuration options
+   *
+   * @example
+   * ```ts
+   * const fpl = new FplFetch({ debug: true });
+   * ```
    */
-  constructor(config: Config) {
-    this.config = config;
+  constructor(config?: Config) {
+    if (config) {
+      this.config = config;
+    }
     this.client = new Client(this.config.debug);
   }
 
@@ -39,21 +49,35 @@ export default class FplFetch {
    * Retrieves the bootstrap static data from the FPL API.
    * This data contains core information about the current FPL season including:
    * teams, players, game settings and rules.
+   * @returns Bootstrap data
    *
    * @example
-   * const data = await fpl.getBootstrapData();
-   *
-   * @returns Bootstrap data from the FPL API
+   * ```ts
+   * try {
+   *   const data = await fpl.getBootstrapData();
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
    */
   async getBootstrapData(): Promise<BootstrapData> {
     return this.client.get(endpoints.bootstrap);
   }
 
   /**
-   * Gets all fixtures for the current season
+   * Gets all fixtures for the current season.
    * @returns List of fixtures
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getFixtures();
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
    */
-  async getFixtures() {
+  async getFixtures(): Promise<Fixture[]> {
     return this.client.get(endpoints.fixtures);
   }
 
@@ -61,8 +85,17 @@ export default class FplFetch {
    * Gets live data for a specific gameweek
    * @param id - Gameweek ID
    * @returns Live gameweek data
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getGameweek(1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
    */
-  async getGameweek(id: number) {
+  async getGameweek(id: number): Promise<Gameweek> {
     return this.client.get(endpoints.gameweek(id));
   }
 
@@ -70,8 +103,17 @@ export default class FplFetch {
    * Gets detailed data for a specific player
    * @param id - Player ID
    * @returns Player summary data
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getPlayer(1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
    */
-  async getPlayer(id: number) {
+  async getPlayer(id: number): Promise<PlayerSummary> {
     return this.client.get(endpoints.player(id));
   }
 }
