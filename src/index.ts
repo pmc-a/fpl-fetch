@@ -1,4 +1,10 @@
-import type { BootstrapData, Fixture, Gameweek, PlayerSummary } from "./types";
+import type {
+  BootstrapData,
+  Fixture,
+  Gameweek,
+  ManagerSummary,
+  PlayerSummary,
+} from "./types";
 
 import { Client } from "./client";
 
@@ -10,6 +16,7 @@ const endpoints = {
   fixtures: "fixtures/",
   gameweek: (id: number) => `event/${id}/live/`,
   player: (id: number) => `element-summary/${id}/`,
+  manager: (id: number) => `entry/${id}/`,
 };
 
 /**
@@ -115,5 +122,23 @@ export default class FplFetch {
    */
   async getPlayer(id: number): Promise<PlayerSummary> {
     return this.client.get(endpoints.player(id));
+  }
+
+  /**
+   * Gets detailed data for a specific manager
+   * @param id - Manager ID
+   * @returns Manager summary data
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getManager(1);
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
+   */
+  async getManager(id: number): Promise<ManagerSummary> {
+    return this.client.get(endpoints.manager(id));
   }
 }
