@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs",
-    "test": "vitest",
+    "test": "vitest --silent",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint . --fix",
     "prepublishOnly": "npm run build"
