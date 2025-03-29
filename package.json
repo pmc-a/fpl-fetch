@@ -14,6 +14,10 @@
   "keywords": [
     "fpl"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmc-a/fpl-fetch"
+  },
   "author": "pmc-a",
   "license": "MIT",
   "description": "Wrapper for the Fantasy Premier League API",
