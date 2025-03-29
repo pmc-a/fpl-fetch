@@ -1,6 +1,6 @@
 {
   "name": "fpl-fetch",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pmc-a/fpl-fetch"
+    "url": "git+https://github.com/pmc-a/fpl-fetch.git"
   },
   "author": "pmc-a",
   "license": "MIT",
