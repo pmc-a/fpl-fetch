@@ -1,6 +1,6 @@
 {
   "name": "fpl-fetch",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -11,7 +11,9 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs",
     "test": "vitest --silent",
