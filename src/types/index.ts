@@ -156,6 +156,21 @@ export interface Fixture {
 }
 
 /**
+ * Event Status
+ */
+interface CurrentEventStatus {
+  bonus_added: boolean;
+  date: string;
+  event: number;
+  points: string;
+}
+
+export interface EventStatus {
+  status: CurrentEventStatus[];
+  leagues: string;
+}
+
+/**
  * Gameweek summary
  */
 export interface Gameweek {

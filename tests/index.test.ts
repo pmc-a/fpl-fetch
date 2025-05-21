@@ -57,6 +57,28 @@ describe("FplFetch", () => {
     });
   });
 
+  describe("event status", () => {
+    it("should throw an error when the client errors", async () => {
+      mockClient.get.mockRejectedValue(new Error("Mock getCurrentEvent error"));
+
+      await expect(fplFetch.getCurrentEvent()).rejects.toThrow(
+        "Mock getCurrentEvent error",
+      );
+    });
+
+    it("should get event status", async () => {
+      const mockEventStatus = {
+        id: 12345,
+      };
+      mockClient.get.mockResolvedValue(mockEventStatus);
+
+      const result = await fplFetch.getCurrentEvent();
+
+      expect(mockClient.get).toHaveBeenCalledWith("event-status/");
+      expect(result).toEqual(mockEventStatus);
+    });
+  });
+
   describe("fixtures", () => {
     it("should throw an error when the client errors", async () => {
       mockClient.get.mockRejectedValue(new Error("Mock getFixtures error"));

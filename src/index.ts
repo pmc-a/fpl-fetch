@@ -1,5 +1,6 @@
 import type {
   BootstrapData,
+  EventStatus,
   Fixture,
   Gameweek,
   ManagerGameweekPicks,
@@ -16,6 +17,7 @@ import { Client } from "./client";
  */
 const endpoints = {
   bootstrap: "bootstrap-static/",
+  eventStatus: "event-status/",
   fixtures: "fixtures/",
   gameweek: (id: number) => `event/${id}/live/`,
   player: (id: number) => `element-summary/${id}/`,
@@ -76,6 +78,24 @@ export default class FplFetch {
    */
   async getBootstrapData(): Promise<BootstrapData> {
     return this.client.get(endpoints.bootstrap);
+  }
+
+  /**
+   * Gets the current event status.
+   * This provides information about the current gameweek, and whether bonus points have been added.
+   * @returns Current event status data
+   *
+   * @example
+   * ```ts
+   * try {
+   *   const data = await fpl.getCurrentEvent();
+   * } catch (error: unknown) {
+   *   console.error(error);
+   * }
+   * ```
+   */
+  async getCurrentEvent(): Promise<EventStatus> {
+    return this.client.get(endpoints.eventStatus);
   }
 
   /**
