@@ -12,6 +12,32 @@ import type {
 
 import { Client } from "./client";
 
+// Re-export for library consumers
+export { APIError } from "./client";
+export type {
+  // Main API response types
+  BootstrapData,
+  Chip,
+  Event,
+  EventStatus,
+  Fixture,
+  GameConfig,
+  Gameweek,
+  GameSettings,
+  ManagerGameweekPicks,
+  ManagerHistory,
+  ManagerSummary,
+  Phase,
+  PlayerSummary,
+  Transfer,
+  // Useful nested types
+  Element,
+  GameweekElement,
+  History,
+  Pick,
+  Team,
+} from "./types";
+
 /**
  * API endpoint paths for FPL data
  */
