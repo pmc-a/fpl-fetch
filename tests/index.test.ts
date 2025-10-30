@@ -4,23 +4,29 @@ import { Client } from "../src/client";
 
 import FplFetch from "../src";
 
+interface MockClientInstance {
+  get: Mock;
+}
+
 vi.mock("../src/client", () => {
+  function MockClient(this: MockClientInstance) {
+    this.get = vi.fn();
+  }
+
   return {
-    Client: vi.fn().mockImplementation(() => ({
-      get: vi.fn(),
-    })),
+    Client: vi.fn(MockClient),
   };
 });
 
 describe("FplFetch", () => {
   let fplFetch: FplFetch;
-  let mockClient: { get: Mock };
+  let mockClient: MockClientInstance;
 
   beforeEach(() => {
     vi.clearAllMocks();
 
     fplFetch = new FplFetch();
-    mockClient = (Client as unknown as Mock).mock.results[0].value;
+    mockClient = (fplFetch as unknown as { client: MockClientInstance }).client;
   });
 
   it("should create an instance with default config", () => {
