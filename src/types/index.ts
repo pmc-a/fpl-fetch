@@ -104,13 +104,24 @@ export interface Team {
   id: number;
   name: string;
   short_name: string;
+  unavailable: boolean;
   strength: number;
+  position: number;
+  played: number;
+  win: number;
+  loss: number;
+  draw: number;
+  points: number;
+  form: string | null;
+  link_url: string;
   strength_overall_home: number;
   strength_overall_away: number;
   strength_attack_home: number;
   strength_attack_away: number;
   strength_defence_home: number;
   strength_defence_away: number;
+  team_division: number | null;
+  pulse_id: number;
 }
 
 interface ElementStat {
@@ -133,22 +144,106 @@ interface ElementType {
 export interface Element {
   id: number;
   web_name: string;
+  first_name: string;
+  second_name: string;
   element_type: number;
   team: number;
+  team_code: number;
+  status: string;
+  code: number;
   now_cost: number;
+  now_cost_rank: number;
+  now_cost_rank_type: number;
+  cost_change_event: number;
+  cost_change_event_fall: number;
+  cost_change_start: number;
+  cost_change_start_fall: number;
   total_points: number;
-  selected_by_percent: string;
-  form: string;
+  event_points: number;
   points_per_game: string;
+  points_per_game_rank: number;
+  points_per_game_rank_type: number;
+  selected_by_percent: string;
+  selected_rank: number;
+  selected_rank_type: number;
+  form: string;
+  form_rank: number;
+  form_rank_type: number;
+  value_form: string;
+  value_season: string;
+  transfers_in: number;
+  transfers_in_event: number;
+  transfers_out: number;
+  transfers_out_event: number;
   news: string;
   news_added: string | null;
+  chance_of_playing_next_round: number | null;
+  chance_of_playing_this_round: number | null;
+  squad_number: number | null;
+  photo: string;
+  special: boolean;
+  in_dreamteam: boolean;
+  dreamteam_count: number;
   minutes: number;
   goals_scored: number;
   assists: number;
   clean_sheets: number;
+  clean_sheets_per_90: number;
+  goals_conceded: number;
+  goals_conceded_per_90: number;
+  own_goals: number;
+  penalties_saved: number;
+  penalties_missed: number;
+  yellow_cards: number;
+  red_cards: number;
+  saves: number;
+  saves_per_90: number;
+  bonus: number;
+  bps: number;
+  influence: string;
+  influence_rank: number;
+  influence_rank_type: number;
+  creativity: string;
+  creativity_rank: number;
+  creativity_rank_type: number;
+  threat: string;
+  threat_rank: number;
+  threat_rank_type: number;
   ict_index: string;
+  ict_index_rank: number;
+  ict_index_rank_type: number;
+  starts: number;
+  starts_per_90: number;
   expected_goals: string;
+  expected_goals_per_90: number;
   expected_assists: string;
+  expected_assists_per_90: number;
+  expected_goal_involvements: string;
+  expected_goal_involvements_per_90: number;
+  expected_goals_conceded: string;
+  expected_goals_conceded_per_90: number;
+  ep_this: string | null;
+  ep_next: string | null;
+  corners_and_indirect_freekicks_order: number | null;
+  corners_and_indirect_freekicks_text: string;
+  direct_freekicks_order: number | null;
+  direct_freekicks_text: string;
+  penalties_order: number | null;
+  penalties_text: string;
+  can_transact: boolean;
+  can_select: boolean;
+  removed: boolean;
+  region: number;
+  team_join_date: string;
+  birth_date: string;
+  has_temporary_code: boolean;
+  opta_code: string;
+  clearances_blocks_interceptions: number;
+  recoveries: number;
+  tackles: number;
+  defensive_contribution: number;
+  defensive_contribution_per_90: number;
+  scout_risks: unknown[];
 }
 
 /**
@@ -245,18 +340,15 @@ interface Stats {
   creativity: string;
   threat: string;
   ict_index: string;
+  clearances_blocks_interceptions: number;
+  recoveries: number;
+  tackles: number;
+  defensive_contribution: number;
   starts: number;
   expected_goals: string;
   expected_assists: string;
   expected_goal_involvements: string;
   expected_goals_conceded: string;
-  mng_win: number;
-  mng_draw: number;
-  mng_loss: number;
-  mng_underdog_win: number;
-  mng_underdog_draw: number;
-  mng_clean_sheets: number;
-  mng_goals_scored: number;
   total_points: number;
   in_dreamteam: boolean;
 }
@@ -301,18 +393,15 @@ export interface History {
   creativity: string;
   threat: string;
   ict_index: string;
+  clearances_blocks_interceptions: number;
+  recoveries: number;
+  tackles: number;
+  defensive_contribution: number;
   starts: number;
   expected_goals: string;
   expected_assists: string;
   expected_goal_involvements: string;
   expected_goals_conceded: string;
-  mng_win: number;
-  mng_draw: number;
-  mng_loss: number;
-  mng_underdog_win: number;
-  mng_underdog_draw: number;
-  mng_clean_sheets: number;
-  mng_goals_scored: number;
   value: number;
   transfers_balance: number;
   selected: number;
@@ -343,25 +432,40 @@ interface HistoryPast {
   creativity: string;
   threat: string;
   ict_index: string;
+  clearances_blocks_interceptions: number;
+  recoveries: number;
+  tackles: number;
+  defensive_contribution: number;
   starts: number;
   expected_goals: string;
   expected_assists: string;
   expected_goal_involvements: string;
   expected_goals_conceded: string;
-  mng_win: number;
-  mng_draw: number;
-  mng_loss: number;
-  mng_underdog_win: number;
-  mng_underdog_draw: number;
-  mng_clean_sheets: number;
-  mng_goals_scored: number;
 }
 
 /**
  * Individual player summary
  */
+
+interface PlayerFixture {
+  id: number;
+  code: number;
+  team_h: number;
+  team_h_score: number | null;
+  team_a: number;
+  team_a_score: number | null;
+  event: number;
+  finished: boolean;
+  minutes: number;
+  provisional_start_time: boolean;
+  kickoff_time: string;
+  event_name: string;
+  is_home: boolean;
+  difficulty: number;
+}
+
 export interface PlayerSummary {
-  fixtures: Fixture[];
+  fixtures: PlayerFixture[];
   history: History[];
   history_past: HistoryPast[];
 }
