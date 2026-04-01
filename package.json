@@ -33,7 +33,7 @@
   "license": "MIT",
   "description": "Wrapper for the Fantasy Premier League API",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
