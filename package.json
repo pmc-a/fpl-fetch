@@ -1,10 +1,23 @@
 {
   "name": "fpl-fetch",
   "version": "2.9.0",
+  "description": "Wrapper for the Fantasy Premier League API",
+  "keywords": [
+    "fpl"
+  ],
+  "license": "MIT",
+  "author": "pmc-a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmc-a/fpl-fetch.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -12,38 +25,24 @@
       "require": "./dist/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs",
     "test": "vitest --silent",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint . --fix",
-    "prepublishOnly": "npm run build"
+    "lint": "oxlint . --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky"
   },
-  "keywords": [
-    "fpl"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pmc-a/fpl-fetch.git"
-  },
-  "author": "pmc-a",
-  "license": "MIT",
-  "description": "Wrapper for the Fantasy Premier League API",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-tsdoc": "^0.5.0",
     "husky": "^9.1.7",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0",
     "vitest": "^4.0.18",
     "vitest-fetch-mock": "^0.4.5"
   }

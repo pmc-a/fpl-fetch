@@ -1,6 +1,6 @@
-import { APIError, Client } from "../../src/client";
-
 import { afterEach, describe, expect, it, vi } from "vitest";
+
+import { APIError, Client } from "../../src/client";
 
 describe("Client", () => {
   const client = new Client();

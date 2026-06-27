@@ -13,9 +13,9 @@ This library ("Library") provides an interface to access data from the Fantasy P
 5. Terms Compliance: Use of this Library does not exempt you from complying with all applicable Fantasy Premier League terms and conditions. You are responsible for ensuring your usage of FPL data complies with all relevant terms of service.
 
 6. Data Usage: You agree not to:
-    - Use the data for commercial purposes without proper authorization
-    - Redistribute or republish the data in violation of FPL terms
-    - Use the data in any way that could damage the reputation or intellectual property rights of the Premier League
+   - Use the data for commercial purposes without proper authorization
+   - Redistribute or republish the data in violation of FPL terms
+   - Use the data in any way that could damage the reputation or intellectual property rights of the Premier League
 
 7. Termination: Your right to use this Library will terminate automatically if you fail to comply with these terms or the FPL terms of service.
 
