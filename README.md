@@ -10,7 +10,6 @@ A modern, type-safe TypeScript wrapper for the [Fantasy Premier League](https://
 - 🛡️ Robust Error Handling: Clear and consistent error messages.
 - 📦 Lightweight: No unnecessary dependencies.
 
-
 ## Installation
 
 ```bash
@@ -20,14 +19,14 @@ npm install fpl-fetch
 ## Basic Usage
 
 ```typescript
-import FplFetch from 'fpl-fetch';
+import FplFetch from "fpl-fetch";
 
 const client = new FplFetch();
 
 async function main() {
-    const player = await client.getPlayer(328);
-    console.log(player);
+  const player = await client.getPlayer(328);
+  console.log(player);
 }
 
-main().catch(console.error)
+main().catch(console.error);
 ```

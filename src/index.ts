@@ -1,3 +1,4 @@
+import { Client } from "./client";
 import type {
   BootstrapData,
   EventStatus,
@@ -9,8 +10,6 @@ import type {
   PlayerSummary,
   Transfer,
 } from "./types";
-
-import { Client } from "./client";
 
 // Re-export for library consumers
 export { APIError } from "./client";

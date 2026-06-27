@@ -1,8 +1,7 @@
 import { type Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { Client } from "../src/client";
-
 import FplFetch from "../src";
+import { Client } from "../src/client";
 
 interface MockClientInstance {
   get: Mock;
