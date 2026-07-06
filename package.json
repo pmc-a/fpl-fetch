@@ -39,7 +39,7 @@
     "@vitest/coverage-v8": "^4.1.9",
     "eslint-plugin-tsdoc": "^0.5.2",
     "husky": "^9.1.7",
-    "oxfmt": "^0.56.0",
+    "oxfmt": "^0.57.0",
     "oxlint": "^1.71.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
